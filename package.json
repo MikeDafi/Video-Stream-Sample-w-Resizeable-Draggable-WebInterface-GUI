@@ -1,0 +1,27 @@
+{
+  "name": "video-stream-sample",
+  "version": "1.0.0",
+  "description": "Streaming video example",
+  "main": "server.js",
+  "engines": {
+    "node": ">=6.2.0"
+  },
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "daspinola",
+  "license": "MIT",
+  "dependencies": {
+    "create-react-app": "^3.0.1",
+    "express": "^4.15.3",
+    "express-react-views": "0.11.0",
+    "jade": "1.11.0",
+    "jsx": "0.9.89",
+    "nodemon": "^1.11.0",
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
+    "react-html5video": "2.5.1",
+    "react-rnd": "10.0.0",
+    "ytdl-core": "0.29.3"
+  }
+}
