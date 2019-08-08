@@ -21,6 +21,7 @@ import Collapse from "@material-ui/core/Collapse";
 import "bootstrap/dist/css/bootstrap.min.css";
 import projectsDropDown from "../../Models/projects";
 import sidebar from "../../Models/sidebar";
+
 class Sidebar extends React.Component {
   constructor(props) {
     super(props);

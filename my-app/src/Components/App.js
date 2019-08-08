@@ -137,7 +137,7 @@ class App extends Component {
               return (
                 <div>
                   <Rnd
-                    lockAspectRatio={true}
+                    lockAspectRatio={obj.fixedAspect}
                     enableUserSelectHack={true}
                     default={{
                       x: 0,
