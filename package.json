@@ -1,5 +1,5 @@
 {
-  "name": "video-stream-sample",
+  "name": "newst-portfolio",
   "version": "1.0.0",
   "description": "Streaming video example",
   "main": "server.js",
@@ -21,7 +21,11 @@
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-html5video": "2.5.1",
+    "react-icons": "3.7.0",
+    "react-iframe": "1.8.0",
+    "react-iframe-resizer-super": "0.2.2",
     "react-rnd": "10.0.0",
     "ytdl-core": "0.29.3"
-  }
+  },
+  "keywords": []
 }

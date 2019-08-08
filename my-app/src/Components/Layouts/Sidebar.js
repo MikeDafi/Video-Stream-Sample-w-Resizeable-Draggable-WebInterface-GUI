@@ -6,11 +6,18 @@ import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
 import Translate from "@material-ui/icons/Translate";
 import FlightLand from "@material-ui/icons/FlightLand";
 import FlightTakeoff from "@material-ui/icons/FlightTakeoff";
 import SettingsRemote from "@material-ui/icons/SettingsRemote";
+import ExpandLess from "@material-ui/icons/ExpandLess";
+import ExpandMore from "@material-ui/icons/ExpandMore";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import Web from "@material-ui/icons/Web";
+import Contacts from "@material-ui/icons/Contacts";
+import Forum from "@material-ui/icons/Forum";
+import ListItemText from "@material-ui/core/ListItemText";
+import Collapse from "@material-ui/core/Collapse";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class Sidebar extends React.Component {
@@ -21,18 +28,139 @@ class Sidebar extends React.Component {
       top: false,
       left: false,
       bottom: false,
-      right: false
+      right: false,
+      open: false
     };
   }
+  projectsDropDown = [
+    {
+      key: "Wikipedia",
+      width: "650px",
+      height: "350px",
+      link:
+        "https://www.holidify.com/images/compressed/attractions/attr_437.jpg",
+      index: 1.1,
+      posts: [],
+      priority: 0,
+      minH: 350,
+      minW: 950,
+      url: "https://en.wikipedia.org/wiki/BuzzFeed",
+      body:
+        "I’m a big fan of Pat Flynn from Smart Passive Income. Never mind his about page, I love his entire site! It’s so clean and easy to navigate… but back to about pages. His about page shows another great example of sharing some of his personal life successfully. He doesn’t only explain his brand (professional), but shares a family picture (personal). Side note: My favorite part of his podcast episodes are the fun facts in the opening."
+    },
+    {
+      key: "Portfolio",
+      width: "1027px",
+      posts: [],
+      height: "867px",
+      link:
+        "https://www.holidify.com/images/compressed/attractions/attr_437.jpg",
+      index: 1.1,
+      minW: 1027,
+      minH: 867,
+      priority: 0,
+      url: "https://nd31p-3001.sse.codesandbox.io",
+      body:
+        "I’m a big fan of Pat Flynn from Smart Passive Income. Never mind his about page, I love his entire site! It’s so clean and easy to navigate… but back to about pages. His about page shows another great example of sharing some of his personal life successfully. He doesn’t only explain his brand (professional), but shares a family picture (personal). Side note: My favorite part of his podcast episodes are the fun facts in the opening."
+    },
+    {
+      key: "Youtube Downloader",
+      width: "900px",
+      posts: [],
+      height: "300px",
+      link:
+        "https://www.holidify.com/images/compressed/attractions/attr_437.jpg",
+      index: 1.1,
+      minH: 800,
+      minW: 300,
+      priority: 0,
+      url: "https://ekktm.sse.codesandbox.io/",
+      body:
+        "I’m a big fan of Pat Flynn from Smart Passive Income. Never mind his about page, I love his entire site! It’s so clean and easy to navigate… but back to about pages. His about page shows another great example of sharing some of his personal life successfully. He doesn’t only explain his brand (professional), but shares a family picture (personal). Side note: My favorite part of his podcast episodes are the fun facts in the opening."
+    }
+  ];
 
-  useStyles = makeStyles({
+  list1 = [
+    {
+      key: "About Me",
+      index: 0,
+      priority: 0,
+      dropDown: false,
+      width: "520px",
+      posts: [],
+      height: "758px",
+      minW: 580,
+      minH: 768,
+      url: "https://ekktm.sse.codesandbox.io/",
+      link: "https://avatars1.githubusercontent.com/u/13594692?s=460&v=4",
+      body:
+        "I’m a big fan of Pat Flynn from Smart Passive Income. Never mind his about page, I love his entire site! It’s so clean and easy to navigate… but back to about pages. His about page shows another great example of sharing some of his personal life successfully. He doesn’t only explain his brand (professional), but shares a family picture (personal). Side note: My favorite part of his podcast episodes are the fun facts in the opening."
+    },
+    {
+      key: "Projects",
+      index: 1,
+      priority: 0,
+      minH: 300,
+      posts: [],
+      dropDown: true,
+      url: "https://ekktm.sse.codesandbox.io/",
+      width: "520px",
+      height: "500px",
+      minW: 300,
+      link:
+        "https://www.etonline.com/sites/default/files/styles/max_1280x720/public/images/2018-04/jenna_dewan_gettyimages-937934902_1280.jpg?itok=sPctm7XR",
+      body:
+        "I’m a big fan of Pat Flynn from Smart Passive Income. Never mind his about page, I love his entire site! It’s so clean and easy to navigate… but back to about pages. His about page shows another great example of sharing some of his personal life successfully. He doesn’t only explain his brand (professional), but shares a family picture (personal). Side note: My favorite part of his podcast episodes are the fun facts in the opening."
+    },
+    {
+      key: "Contact Info",
+      index: 2,
+      priority: 0,
+      posts: [],
+      minH: 460,
+      minW: 350,
+      url: "https://ekktm.sse.codesandbox.io/",
+      link: "https://www.thesitewizard.com/img/logo202x42.png",
+      dropDown: false,
+      width: "350px",
+      height: "460px",
+      body:
+        "I’m sa big fan of Pat Flynn from Smart Passive Income. Never mind his about page, I love his entire site! It’s so clean and easy to navigate… but back to about pages. His about page shows another great example of sharing some of his personal life successfully. He doesn’t only explain his brand (professional), but shares a family picture (personal). Side note: My favorite part of his podcast episodes are the fun facts in the opening."
+    },
+    {
+      key: "Posts",
+      index: 3,
+      posts: this.projectsDropDown,
+      minH: 577,
+      minW: 440,
+      url: "https://ekktm.sse.codesandbox.io/",
+      link:
+        "https://www.holidify.com/images/compressed/attractions/attr_437.jpg",
+      priority: 0,
+      dropDown: false,
+      width: "350px",
+      height: "460px",
+      body:
+        "I’m a big fan of Pat Flynn from Smart Passive Income. Never mind his about page, I love his entire site! It’s so clean and easy to navigate… but back to about pages. His about page shows another great example of sharing some of his personal life successfully. He doesn’t only explain his brand (professional), but shares a family picture (personal). Side note: My favorite part of his podcast episodes are the fun facts in the opening."
+    }
+  ];
+
+  useStyles = makeStyles(theme => ({
+    root: {
+      width: "100%",
+      maxWidth: 360,
+      backgroundColor: theme.palette.background.paper
+    },
+    nested: {
+      paddingLeft: theme.spacing(4)
+    },
     list: {
-      width: 250
+      width: 350
     },
     fullList: {
       width: "auto"
     }
-  });
+  }));
 
   classes = this.useStyles;
 
@@ -40,58 +168,116 @@ class Sidebar extends React.Component {
     this.isVisible = isVisible;
     this.forceUpdate();
   }
-  toggleDrawer = (side, open) => event => {
+  toggleDrawer = (side, open, obj) => event => {
     if (
       event.type === "keydown" &&
       (event.key === "Tab" || event.key === "Shift")
     ) {
       return;
     }
-
+    if (obj != null) {
+      this.props.handleToUpdateFromSidebar(obj);
+    }
     this.setState({ ...this.state, [side]: open });
   };
 
-  list1 = [
-    { key: "F18 Application", index: 0, priority: 0 },
-    { key: "F19 Application", index: 1, priority: 0 },
-    { key: "F20 Application", index: 2, priority: 0 },
-    { key: "F22 Application", index: 3, priority: 0 }
-  ];
+  handleClick() {
+    this.setState({
+      open: !this.state.open
+    });
+  }
 
-  sideList = side => (
-    <div
-      className={this.classes.list}
-      role="presentation"
-      onClick={this.toggleDrawer(side, false)}
-      onKeyDown={this.toggleDrawer(side, false)}
-    >
-      <List>
-        {this.list1.map(obj => (
-          <ListItem
-            button
-            key={obj.key}
-            onClick={() => this.props.handleToUpdateFromSidebar(obj)}
-          >
-            <ListItemIcon>
-              {obj.index % 2 === 0 ? <FlightLand /> : <SettingsRemote />}
-            </ListItemIcon>
-            <ListItemText primary={obj.key} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["Help", "Contact", "Assistance"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <FlightTakeoff /> : <Translate />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
+  sideList = side => {
+    let userListItem;
+    return (
+      <div className={this.classes.list} role="presentation">
+        <List className={this.classes.root}>
+          {this.list1.map(obj =>
+            obj.dropDown ? (
+              (userListItem = (
+                <ListItem
+                  button
+                  key={obj.key}
+                  onClick={this.handleClick.bind(this)}
+                >
+                  <ListItemIcon>
+                    {obj.index === 0 ? (
+                      <AccountCircle />
+                    ) : obj.index === 1 ? (
+                      <Web />
+                    ) : obj.index === 2 ? (
+                      <Contacts />
+                    ) : obj.index === 3 ? (
+                      <Forum />
+                    ) : null}
+                  </ListItemIcon>
+                  <ListItemText primary={obj.key} />
+
+                  {this.state.open ? <ExpandLess /> : <ExpandMore />}
+                  <Collapse in={this.state.open} timeout="auto" unmountOnExit>
+                    <List component="div">
+                      {this.projectsDropDown.map(projects => (
+                        <ListItem
+                          button
+                          className={this.classes.nested}
+                          onClick={this.toggleDrawer(side, false, projects)}
+                          onKeyDown={this.toggleDrawer(side, false, projects)}
+                        >
+                          <ListItemIcon />
+                          <ListItemText primary={projects.key} />
+                        </ListItem>
+                      ))}
+                    </List>
+                  </Collapse>
+                </ListItem>
+              ))
+            ) : (
+              <ListItem
+                button
+                key={obj.key}
+                // onClick={() => {
+                //   this.onClick(obj, side);
+                // }}
+                onClick={this.toggleDrawer(side, false, obj)}
+                onKeyDown={this.toggleDrawer(side, false, obj)}
+              >
+                <ListItemIcon>
+                  {obj.index === 0 ? (
+                    <AccountCircle />
+                  ) : obj.index === 1 ? (
+                    <Web />
+                  ) : obj.index === 2 ? (
+                    <Contacts />
+                  ) : obj.index === 3 ? (
+                    <Forum />
+                  ) : null}
+                </ListItemIcon>
+                <ListItemText primary={obj.key} />
+              </ListItem>
+            )
+          )}
+        </List>
+        <Divider />
+        <center>
+          <br />
+
+          <small>I made this site with React. </small>
+          <br />
+          <a href="url">github repo</a>
+        </center>
+        {/* <List>
+          {["Help", "Contact", "Assistance"].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <FlightTakeoff /> : <Translate />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List> */}
+      </div>
+    );
+  };
 
   render() {
     var handleToUpdateFromSidebar = this.props.handleToUpdateFromSidebar;
@@ -104,7 +290,7 @@ class Sidebar extends React.Component {
             alt="Northrop Logo"
           />
           <div id="header-brand" padding-left="10px">
-            applications
+            mckaufma.me
           </div>
         </Button>
         <Drawer
