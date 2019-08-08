@@ -131,31 +131,44 @@ class App extends Component {
       //   console.log(this.state.widgets[x]);
       // }
       return (
-        <div id="box">
+        <div id="header2">
           <Sidebar
             handleToUpdateFromSidebar={handleToUpdateFromSidebar.bind(this)}
           />
           {this.state.widgets.map(obj => {
             if (obj != 1) {
+              console.log(obj + "lol");
               return (
                 <div>
                   <Rnd
+                    lockAspectRatio={true}
+                    enableUserSelectHack={true}
+                    default={{
+                      x: 0,
+                      y: 0,
+                      width: obj.width,
+                      height: obj.height
+                    }}
                     style={{
-                      display: "flex",
-                      border: "solid 5px #ddd",
-                      background: "#f0f0f0",
+                      border: "solid 1px #9CD0EA",
+                      borderInline: "#000000",
+                      background: "#FFFFFF",
                       zIndex: obj.priority
                     }}
+                    minWidth={obj.minW}
+                    minHeight={obj.minH}
                     onMouseDown={() =>
                       this.changeZIndexHelper(this.state, obj.key)
                     }
-                    grid={[25, 25]}
+                    resizeGrid={[25, 25]}
+                    dragGrid={[25, 25]}
                     {...dragHandlers}
                   >
                     <Widget
                       removeWidgetByID={removeWidgetByID.bind(this)}
                       show={this.state.viewIt}
                       title={obj.key}
+                      object={obj}
                     />
                   </Rnd>
                 </div>
