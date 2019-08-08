@@ -1,5 +1,5 @@
 import React from "react";
-import Toast from "react-bootstrap/Toast";
+// import Toast from "react-bootstrap/Toast";
 import Button from "@material-ui/core/Button";
 import CardPage from "./Cards/CardPage";
 import "bootstrap/dist/css/bootstrap.min.css";

@@ -1,18 +1,15 @@
 import React, { Component } from "react";
+import { Rnd } from "react-rnd";
 
 import Sidebar from "./Layouts/Sidebar";
-
 import Widget from "./Layouts/Widget";
-
-import Draggable from "react-draggable";
-import { Rnd } from "react-rnd";
 
 class App extends Component {
   constructor(props) {
     super(props);
 
-    var handleToUpdateFromSidebar = this.handleToUpdateFromSidebar.bind(this);
-    var removeWidgetByID = this.removeWidgetByID.bind(this);
+    // var handleToUpdateFromSidebar = this.handleToUpdateFromSidebar.bind(this);
+    // var removeWidgetByID = this.removeWidgetByID.bind(this);
     this.state = {
       x: 20,
       viewIt: true,
@@ -61,10 +58,10 @@ class App extends Component {
     }
   }
 
-  eventLogger = (e: MouseEvent, data: Object) => {
-    // console.log("Event: ", e);
-    // console.log("Data: ", data);
-  };
+  // eventLogger = (e: MouseEvent, data: Object) => {
+  //   // console.log("Event: ", e);
+  //   // console.log("Data: ", data);
+  // };
 
   handleDrag = (deltaX, deltaY) => {
     this.setState({
@@ -93,7 +90,7 @@ class App extends Component {
         }
 
         if (
-          y != nextLowest.index &&
+          y !== nextLowest.index &&
           nextLowest.priority + 1 === widgetsCopy[y].priority &&
           first
         ) {
@@ -136,8 +133,7 @@ class App extends Component {
             handleToUpdateFromSidebar={handleToUpdateFromSidebar.bind(this)}
           />
           {this.state.widgets.map(obj => {
-            if (obj != 1) {
-              console.log(obj + "lol");
+            if (obj !== 1) {
               return (
                 <div>
                   <Rnd

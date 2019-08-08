@@ -1,10 +1,9 @@
 import React from "react";
-import Card from "react-bootstrap/Card";
-import ListGroup from "react-bootstrap/ListGroup";
-import ListGroupItem from "react-bootstrap/ListGroupItem";
-import axios from "axios";
-import Ytdl from "./ytdl";
-import AboutMe from "./AboutMe.js";
+// import Card from "react-bootstrap/Card";
+// import ListGroup from "react-bootstrap/ListGroup";
+// import ListGroupItem from "react-bootstrap/ListGroupItem";
+
+import GeneralPage from "./GeneralPage.js";
 
 class Cardpage extends React.Component {
   state = {
@@ -12,11 +11,11 @@ class Cardpage extends React.Component {
   };
 
   render() {
-    var id = this.props.info;
-    var o = this.props.object;
+    const id = this.props.info;
+    const o = this.props.object;
     console.log(id);
-    if (id == "About Me" || id == "Posts" || id == "Contact Info") {
-      return <AboutMe object={o} />;
+    if (id === "About Me" || id === "Posts" || id === "Contact Info") {
+      return <GeneralPage object={o} />;
     } else {
       return (
         <>

@@ -6,10 +6,10 @@ import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import Translate from "@material-ui/icons/Translate";
-import FlightLand from "@material-ui/icons/FlightLand";
-import FlightTakeoff from "@material-ui/icons/FlightTakeoff";
-import SettingsRemote from "@material-ui/icons/SettingsRemote";
+// import Translate from "@material-ui/icons/Translate";
+// import FlightLand from "@material-ui/icons/FlightLand";
+// import FlightTakeoff from "@material-ui/icons/FlightTakeoff";
+// import SettingsRemote from "@material-ui/icons/SettingsRemote";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import AccountCircle from "@material-ui/icons/AccountCircle";
@@ -19,7 +19,8 @@ import Forum from "@material-ui/icons/Forum";
 import ListItemText from "@material-ui/core/ListItemText";
 import Collapse from "@material-ui/core/Collapse";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import projectsDropDown from "../../Models/projects";
+import sidebar from "../../Models/sidebar";
 class Sidebar extends React.Component {
   constructor(props) {
     super(props);
@@ -32,118 +33,6 @@ class Sidebar extends React.Component {
       open: false
     };
   }
-  projectsDropDown = [
-    {
-      key: "Wikipedia",
-      width: "650px",
-      height: "350px",
-      link:
-        "https://www.holidify.com/images/compressed/attractions/attr_437.jpg",
-      index: 1.1,
-      posts: [],
-      priority: 0,
-      minH: 350,
-      minW: 950,
-      url: "https://en.wikipedia.org/wiki/BuzzFeed",
-      body:
-        "I’m a big fan of Pat Flynn from Smart Passive Income. Never mind his about page, I love his entire site! It’s so clean and easy to navigate… but back to about pages. His about page shows another great example of sharing some of his personal life successfully. He doesn’t only explain his brand (professional), but shares a family picture (personal). Side note: My favorite part of his podcast episodes are the fun facts in the opening."
-    },
-    {
-      key: "Portfolio",
-      width: "1027px",
-      posts: [],
-      height: "867px",
-      link:
-        "https://www.holidify.com/images/compressed/attractions/attr_437.jpg",
-      index: 1.1,
-      minW: 1027,
-      minH: 867,
-      priority: 0,
-      url: "https://nd31p-3001.sse.codesandbox.io",
-      body:
-        "I’m a big fan of Pat Flynn from Smart Passive Income. Never mind his about page, I love his entire site! It’s so clean and easy to navigate… but back to about pages. His about page shows another great example of sharing some of his personal life successfully. He doesn’t only explain his brand (professional), but shares a family picture (personal). Side note: My favorite part of his podcast episodes are the fun facts in the opening."
-    },
-    {
-      key: "Youtube Downloader",
-      width: "900px",
-      posts: [],
-      height: "300px",
-      link:
-        "https://www.holidify.com/images/compressed/attractions/attr_437.jpg",
-      index: 1.1,
-      minH: 800,
-      minW: 300,
-      priority: 0,
-      url: "https://ekktm.sse.codesandbox.io/",
-      body:
-        "I’m a big fan of Pat Flynn from Smart Passive Income. Never mind his about page, I love his entire site! It’s so clean and easy to navigate… but back to about pages. His about page shows another great example of sharing some of his personal life successfully. He doesn’t only explain his brand (professional), but shares a family picture (personal). Side note: My favorite part of his podcast episodes are the fun facts in the opening."
-    }
-  ];
-
-  list1 = [
-    {
-      key: "About Me",
-      index: 0,
-      priority: 0,
-      dropDown: false,
-      width: "520px",
-      posts: [],
-      height: "758px",
-      minW: 580,
-      minH: 768,
-      url: "https://ekktm.sse.codesandbox.io/",
-      link: "https://avatars1.githubusercontent.com/u/13594692?s=460&v=4",
-      body:
-        "I’m a big fan of Pat Flynn from Smart Passive Income. Never mind his about page, I love his entire site! It’s so clean and easy to navigate… but back to about pages. His about page shows another great example of sharing some of his personal life successfully. He doesn’t only explain his brand (professional), but shares a family picture (personal). Side note: My favorite part of his podcast episodes are the fun facts in the opening."
-    },
-    {
-      key: "Projects",
-      index: 1,
-      priority: 0,
-      minH: 300,
-      posts: [],
-      dropDown: true,
-      url: "https://ekktm.sse.codesandbox.io/",
-      width: "520px",
-      height: "500px",
-      minW: 300,
-      link:
-        "https://www.etonline.com/sites/default/files/styles/max_1280x720/public/images/2018-04/jenna_dewan_gettyimages-937934902_1280.jpg?itok=sPctm7XR",
-      body:
-        "I’m a big fan of Pat Flynn from Smart Passive Income. Never mind his about page, I love his entire site! It’s so clean and easy to navigate… but back to about pages. His about page shows another great example of sharing some of his personal life successfully. He doesn’t only explain his brand (professional), but shares a family picture (personal). Side note: My favorite part of his podcast episodes are the fun facts in the opening."
-    },
-    {
-      key: "Contact Info",
-      index: 2,
-      priority: 0,
-      posts: [],
-      minH: 460,
-      minW: 350,
-      url: "https://ekktm.sse.codesandbox.io/",
-      link: "https://www.thesitewizard.com/img/logo202x42.png",
-      dropDown: false,
-      width: "350px",
-      height: "460px",
-      body:
-        "I’m sa big fan of Pat Flynn from Smart Passive Income. Never mind his about page, I love his entire site! It’s so clean and easy to navigate… but back to about pages. His about page shows another great example of sharing some of his personal life successfully. He doesn’t only explain his brand (professional), but shares a family picture (personal). Side note: My favorite part of his podcast episodes are the fun facts in the opening."
-    },
-    {
-      key: "Posts",
-      index: 3,
-      posts: this.projectsDropDown,
-      minH: 577,
-      minW: 440,
-      url: "https://ekktm.sse.codesandbox.io/",
-      link:
-        "https://www.holidify.com/images/compressed/attractions/attr_437.jpg",
-      priority: 0,
-      dropDown: false,
-      width: "350px",
-      height: "460px",
-      body:
-        "I’m a big fan of Pat Flynn from Smart Passive Income. Never mind his about page, I love his entire site! It’s so clean and easy to navigate… but back to about pages. His about page shows another great example of sharing some of his personal life successfully. He doesn’t only explain his brand (professional), but shares a family picture (personal). Side note: My favorite part of his podcast episodes are the fun facts in the opening."
-    }
-  ];
 
   useStyles = makeStyles(theme => ({
     root: {
@@ -192,7 +81,7 @@ class Sidebar extends React.Component {
     return (
       <div className={this.classes.list} role="presentation">
         <List className={this.classes.root}>
-          {this.list1.map(obj =>
+          {sidebar.map(obj =>
             obj.dropDown ? (
               (userListItem = (
                 <ListItem
@@ -216,7 +105,7 @@ class Sidebar extends React.Component {
                   {this.state.open ? <ExpandLess /> : <ExpandMore />}
                   <Collapse in={this.state.open} timeout="auto" unmountOnExit>
                     <List component="div">
-                      {this.projectsDropDown.map(projects => (
+                      {projectsDropDown.map(projects => (
                         <ListItem
                           button
                           className={this.classes.nested}
@@ -280,7 +169,7 @@ class Sidebar extends React.Component {
   };
 
   render() {
-    var handleToUpdateFromSidebar = this.props.handleToUpdateFromSidebar;
+    // var handleToUpdateFromSidebar = this.props.handleToUpdateFromSidebar;
     return (
       <div id="header">
         <Button onClick={this.toggleDrawer("left", true)}>
