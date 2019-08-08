@@ -10,6 +10,10 @@ app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname + "/views" + "/index.htm"));
 });
 
+app.get("/resume", function(req, res) {
+  res.sendFile(path.join(__dirname + "/views" + "/resume.htm"));
+});
+
 app.get("/download", (req, res) => {
   var URL = req.query.URL;
   res.header("Content-Disposition", 'attachment; filename="video.mp4"');

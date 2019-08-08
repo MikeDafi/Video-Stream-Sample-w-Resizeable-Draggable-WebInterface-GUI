@@ -157,7 +157,7 @@ class App extends Component {
                       this.changeZIndexHelper(this.state, obj.key)
                     }
                     resizeGrid={[25, 25]}
-                    dragGrid={[25, 25]}
+                    //dragGrid={[25, 25]}
                     {...dragHandlers}
                   >
                     <Widget

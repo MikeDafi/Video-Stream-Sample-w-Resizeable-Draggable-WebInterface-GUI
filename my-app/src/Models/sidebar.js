@@ -11,7 +11,7 @@ const sidebar = [
     posts: [],
     height: "758px",
     minW: 580,
-    minH: 768,
+    minH: 728,
     url: "https://ekktm.sse.codesandbox.io/",
     link: "https://avatars1.githubusercontent.com/u/13594692?s=460&v=4",
     body:
@@ -60,6 +60,19 @@ const sidebar = [
     priority: 0,
     dropDown: false,
     width: "900px",
+    height: "800px"
+  },
+  {
+    key: "Resume",
+    index: 3,
+    posts: [],
+    fixedAspect: false,
+    minH: 1000,
+    minW: 900,
+    url: "https://yf7oi.sse.codesandbox.io/resume",
+    priority: 0,
+    dropDown: false,
+    width: "600px",
     height: "800px"
   }
 ];

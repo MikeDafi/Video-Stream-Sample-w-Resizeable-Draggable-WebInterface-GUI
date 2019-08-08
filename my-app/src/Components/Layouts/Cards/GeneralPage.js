@@ -2,9 +2,6 @@ import React from "react";
 // import Card from "react-bootstrap/Card";
 // import ListGroup from "react-bootstrap/ListGroup";
 // import ListGroupItem from "react-bootstrap/ListGroupItem";
-import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
 import Post from "./Post";
 
 class GeneralPage extends React.Component {

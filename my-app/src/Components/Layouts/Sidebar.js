@@ -84,43 +84,41 @@ class Sidebar extends React.Component {
         <List className={this.classes.root}>
           {sidebar.map(obj =>
             obj.dropDown ? (
-              (userListItem = (
-                <ListItem
-                  button
-                  key={obj.key}
-                  onClick={this.handleClick.bind(this)}
-                >
-                  <ListItemIcon>
-                    {obj.index === 0 ? (
-                      <AccountCircle />
-                    ) : obj.index === 1 ? (
-                      <Web />
-                    ) : obj.index === 2 ? (
-                      <Contacts />
-                    ) : obj.index === 3 ? (
-                      <Forum />
-                    ) : null}
-                  </ListItemIcon>
-                  <ListItemText primary={obj.key} />
+              <ListItem
+                button
+                key={obj.key}
+                onClick={this.handleClick.bind(this)}
+              >
+                <ListItemIcon>
+                  {obj.index === 0 ? (
+                    <AccountCircle />
+                  ) : obj.index === 1 ? (
+                    <Web />
+                  ) : obj.index === 2 ? (
+                    <Contacts />
+                  ) : obj.index === 3 ? (
+                    <Forum />
+                  ) : null}
+                </ListItemIcon>
+                <ListItemText primary={obj.key} />
 
-                  {this.state.open ? <ExpandLess /> : <ExpandMore />}
-                  <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-                    <List component="div">
-                      {projectsDropDown.map(projects => (
-                        <ListItem
-                          button
-                          className={this.classes.nested}
-                          onClick={this.toggleDrawer(side, false, projects)}
-                          onKeyDown={this.toggleDrawer(side, false, projects)}
-                        >
-                          <ListItemIcon />
-                          <ListItemText primary={projects.key} />
-                        </ListItem>
-                      ))}
-                    </List>
-                  </Collapse>
-                </ListItem>
-              ))
+                {this.state.open ? <ExpandLess /> : <ExpandMore />}
+                <Collapse in={this.state.open} timeout="auto" unmountOnExit>
+                  <List component="div">
+                    {projectsDropDown.map(projects => (
+                      <ListItem
+                        button
+                        className={this.classes.nested}
+                        onClick={this.toggleDrawer(side, false, projects)}
+                        onKeyDown={this.toggleDrawer(side, false, projects)}
+                      >
+                        <ListItemIcon />
+                        <ListItemText primary={projects.key} />
+                      </ListItem>
+                    ))}
+                  </List>
+                </Collapse>
+              </ListItem>
             ) : (
               <ListItem
                 button
