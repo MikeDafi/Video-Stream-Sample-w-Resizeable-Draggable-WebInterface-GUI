@@ -3,7 +3,10 @@ const fs = require("fs");
 const path = require("path");
 const app = express();
 const ytdl = require("ytdl-core");
-
+var util = require("util"),
+  http = require("http");
+app.set("view engine", "jsx");
+app.engine("jsx", require("express-react-views").createEngine());
 app.use(express.static(path.join("/", "public")));
 
 app.get("/", function(req, res) {
@@ -20,6 +23,68 @@ app.get("/download", (req, res) => {
   ytdl(URL, {
     format: "mp4"
   }).pipe(res);
+});
+
+function removeDuplicateUsingFilter(arr) {
+  let unique_array = arr.filter(function(elem, index, self) {
+    return index === self.indexOf(elem);
+  });
+  return unique_array;
+}
+
+app.get("/music", function(req, res) {
+  var QUERY = req.query.QUERY;
+  var name = QUERY;
+  var src =
+    "http://www.groovydomain.com/gallery/music/ORIGINAL/Cyndi%20Lauper/She%60s%20So%20Unusual/04%20Time%20After%20Time.mp3";
+
+  var request = require("request");
+  var fakeData = [];
+  request({ uri: "http://jukebox.pierrevanlierop.nl/The90s/" }, function(
+    error,
+    response,
+    body
+  ) {
+    //check body for all mp3 tags
+    var list = [];
+    var ii = body.split('"');
+    for (const i in ii) {
+      for (const w in ii[i]) {
+        const word = ii[i];
+        if (word[word.length - 2] === "p" && word[word.length - 1] === "3") {
+          list.push("http://jukebox.pierrevanlierop.nl/The90s/" + word);
+        }
+      }
+    }
+
+    fakeData = [
+      {
+        name: body,
+        src: src
+      },
+      {
+        name: name,
+        src: src
+      },
+      {
+        name: name,
+        src: src
+      },
+      {
+        name: name,
+        src: src
+      }
+    ];
+    res.render(__dirname + "/views" + "/music", {
+      fakeData: removeDuplicateUsingFilter(list)
+    });
+  });
+
+  // https://github.com/ogt/google-search-results-parser
+  // for result.link in results
+  // grab all mp3 links and render them in divs
+
+  // res.sendFile(path.join(__dirname + "/views" + "/music.htm"));
 });
 
 app.get("/video", function(req, res) {
