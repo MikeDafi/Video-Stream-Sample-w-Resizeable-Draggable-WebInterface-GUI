@@ -24,12 +24,11 @@ const sidebar = [
     minH: 300,
     posts: [],
     dropDown: true,
-    url: "https://ekktm.sse.codesandbox.io/",
+    url: "https://yf7oi.sse.codesandbox.io/music",
     width: "520px",
     height: "500px",
     minW: 300,
-    link:
-      "https://www.etonline.com/sites/default/files/styles/max_1280x720/public/images/2018-04/jenna_dewan_gettyimages-937934902_1280.jpg?itok=sPctm7XR",
+    link: "https://yf7oi.sse.codesandbox.io/music",
     body:
       "I’m a big fan of Pat Flynn from Smart Passive Income. Never mind his about page, I love his entire site! It’s so clean and easy to navigate… but back to about pages. His about page shows another great example of sharing some of his personal life successfully. He doesn’t only explain his brand (professional), but shares a family picture (personal). Side note: My favorite part of his podcast episodes are the fun facts in the opening."
   },

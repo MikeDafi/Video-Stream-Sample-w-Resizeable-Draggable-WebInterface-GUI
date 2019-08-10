@@ -33,13 +33,16 @@ function removeDuplicateUsingFilter(arr) {
 }
 
 app.get("/music", function(req, res) {
-  var QUERY = req.query.QUERY;
-  var name = QUERY;
+  var q = req.query.QUERY;
+  var name = q;
   var src =
     "http://www.groovydomain.com/gallery/music/ORIGINAL/Cyndi%20Lauper/She%60s%20So%20Unusual/04%20Time%20After%20Time.mp3";
 
   var request = require("request");
   var fakeData = [];
+  // https://github.com/ogt/google-search-results-parser
+  // for result.link in results
+  // grab all mp3 links and render them in divs
   request({ uri: "http://jukebox.pierrevanlierop.nl/The90s/" }, function(
     error,
     response,
@@ -47,13 +50,15 @@ app.get("/music", function(req, res) {
   ) {
     //check body for all mp3 tags
     var list = [];
-    var ii = body.split('"');
-    for (const i in ii) {
-      for (const w in ii[i]) {
-        const word = ii[i];
-        if (word[word.length - 2] === "p" && word[word.length - 1] === "3") {
-          list.push("http://jukebox.pierrevanlierop.nl/The90s/" + word);
-        }
+    var splitLines = body.split('"');
+    // O(N) get all .mp3
+    for (const line in splitLines) {
+      const word = splitLines[line];
+      if (word[word.length - 2] === "p" && word[word.length - 1] === "3") {
+        //iff no http:// add the web URL from google to this
+        //get track name
+        //check if name has a match with query
+        list.push("http://jukebox.pierrevanlierop.nl/The90s/" + word);
       }
     }
 
@@ -75,14 +80,12 @@ app.get("/music", function(req, res) {
         src: src
       }
     ];
+
     res.render(__dirname + "/views" + "/music", {
-      fakeData: removeDuplicateUsingFilter(list)
+      fakeData: removeDuplicateUsingFilter(list),
+      q: q
     });
   });
-
-  // https://github.com/ogt/google-search-results-parser
-  // for result.link in results
-  // grab all mp3 links and render them in divs
 
   // res.sendFile(path.join(__dirname + "/views" + "/music.htm"));
 });

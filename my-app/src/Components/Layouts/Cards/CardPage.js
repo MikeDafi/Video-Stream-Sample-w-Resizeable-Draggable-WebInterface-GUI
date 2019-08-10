@@ -4,6 +4,7 @@ import React from "react";
 // import ListGroupItem from "react-bootstrap/ListGroupItem";
 
 import GeneralPage from "./GeneralPage.js";
+import BroswerPage from "./BroswerPage.js";
 
 class Cardpage extends React.Component {
   state = {
@@ -16,6 +17,9 @@ class Cardpage extends React.Component {
     console.log(id);
     if (id === "About Me" || id === "Posts" || id === "Contact Info") {
       return <GeneralPage object={o} />;
+    }
+    if (id === "Music Search") {
+      return <BroswerPage object={o} />;
     } else {
       return (
         <>
