@@ -19,10 +19,24 @@ app.get("/resume", function(req, res) {
 
 app.get("/download", (req, res) => {
   var URL = req.query.URL;
-  res.header("Content-Disposition", 'attachment; filename="video.mp4"');
-  ytdl(URL, {
-    format: "mp4"
-  }).pipe(res);
+  res.header("Content-Disposition", 'attachment; filename="video.mp3"');
+  ytdl.getInfo(URL, (err, info) => {
+    if (err) throw err;
+    let audioFormats = ytdl.filterFormats(info.formats, "audioonly");
+    console.log("Formats with only audio: " + audioFormats[0].toS);
+  });
+  // const head = {
+  //   "Content-Length": num,
+  //   "Content-Type": "audio/mpeg"
+  // };
+  // res.writeHead(200, head);
+
+  // ytdl.getInfo(URL, (err, info) => {
+  //   if (err) throw err;
+  //   let audioFormats = ytdl.filterFormats(info.formats, "audioonly");
+  //   console.log("Formats with only audio: " + audioFormats.length);
+  //   audioFormats.pipe(info);
+  // });
 });
 
 function removeDuplicateUsingFilter(arr) {
@@ -32,6 +46,40 @@ function removeDuplicateUsingFilter(arr) {
   return unique_array;
 }
 
+app.get("/m", (req, res) => {
+  // var URL = req.query.QUERY;
+  var URL = "https://www.youtube.com/watch?v=WyFy51GtCJY";
+  // var videoUrl = req.query.videoUrl;
+  // var destDir = req.query.destDir;
+
+  var videoReadableStream = ytdl(URL, { filter: "audioonly" });
+
+  ytdl.getInfo(URL, function(err, info) {
+    var videoName = "ddd";
+
+    var videoWritableStream = fs.createWriteStream("\\" + videoName + ".mp3");
+
+    var stream = videoReadableStream.pipe(videoWritableStream);
+
+    stream.on("finish", function() {
+      res.writeHead(204);
+      res.end();
+    });
+  });
+  // const head = {
+  //   "Content-Length": num,
+  //   "Content-Type": "audio/mpeg"
+  // };
+  // res.writeHead(200, head);
+
+  // ytdl.getInfo(URL, (err, info) => {
+  //   if (err) throw err;
+  //   let audioFormats = ytdl.filterFormats(info.formats, "audioonly");
+  //   console.log("Formats with only audio: " + audioFormats.length);
+  //   audioFormats.pipe(info);
+  // });
+});
+
 app.get("/music", function(req, res) {
   var q = req.query.QUERY;
   var name = q;
@@ -40,6 +88,7 @@ app.get("/music", function(req, res) {
 
   var request = require("request");
   var fakeData = [];
+  // https://www.google.com/search?q=-inurl%3A(htm%7Chtml%7Cphp)+in+title%3A%22index+of%22+%2B%22last+modified%22+%2B%22parent+directory%22+%2Bdescription+%2Bsize+%2Bmp3+%22Nirvana%22&oq=-inurl%3A(htm%7Chtml%7Cphp)+in+title%3A%22index+of%22+%2B%22last+modified%22+%2B%22parent+directory%22+%2Bdescription+%2Bsize+%2Bmp3+%22Nirvana%22&aqs=chrome..69i57.736j0j4&sourceid=chrome&ie=UTF-8
   // https://github.com/ogt/google-search-results-parser
   // for result.link in results
   // grab all mp3 links and render them in divs
@@ -61,25 +110,6 @@ app.get("/music", function(req, res) {
         list.push("http://jukebox.pierrevanlierop.nl/The90s/" + word);
       }
     }
-
-    fakeData = [
-      {
-        name: body,
-        src: src
-      },
-      {
-        name: name,
-        src: src
-      },
-      {
-        name: name,
-        src: src
-      },
-      {
-        name: name,
-        src: src
-      }
-    ];
 
     res.render(__dirname + "/views" + "/music", {
       fakeData: removeDuplicateUsingFilter(list),

@@ -38,7 +38,11 @@ class Widget extends React.Component {
             <i class="fa fa-close" /> Close
           </Button>
         </div>
-        <CardPage object={this.props.object} info={this.props.title} />
+        <CardPage
+          id="CardPage"
+          object={this.props.object}
+          info={this.props.title}
+        />
       </div>
       //   </Toast.Body>
       // </Toast>

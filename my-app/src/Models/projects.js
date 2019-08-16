@@ -17,7 +17,7 @@ const projects = [
       "I’m a big fan of Pat Flynn from Smart Passive Income. Never mind his about page, I love his entire site! It’s so clean and easy to navigate… but back to about pages. His about page shows another great example of sharing some of his personal life successfully. He doesn’t only explain his brand (professional), but shares a family picture (personal). Side note: My favorite part of his podcast episodes are the fun facts in the opening."
   },
   {
-    key: "Music Search",
+    key: "Music",
     width: "1027px",
     posts: [],
     x: 0,
