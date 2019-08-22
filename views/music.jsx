@@ -55,7 +55,7 @@ function music(props) {
       <form method="get" action="/music?QUERY=jikkkk">
         <button type="submit">Continue</button>
       </form> */}
-
+      {props.q}
       {props.fakeData.map(data => {
         return (
           <figure>

@@ -178,7 +178,7 @@ class Sidebar extends React.Component {
             alt="Northrop Logo"
           />
           <div id="header-brand" padding-left="10px">
-            mckaufma.me
+            portfolio
           </div>
         </Button>
         <Drawer

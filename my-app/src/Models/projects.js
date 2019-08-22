@@ -17,19 +17,19 @@ const projects = [
       "I’m a big fan of Pat Flynn from Smart Passive Income. Never mind his about page, I love his entire site! It’s so clean and easy to navigate… but back to about pages. His about page shows another great example of sharing some of his personal life successfully. He doesn’t only explain his brand (professional), but shares a family picture (personal). Side note: My favorite part of his podcast episodes are the fun facts in the opening."
   },
   {
-    key: "Music Search",
+    key: "Music",
     width: "1027px",
     posts: [],
     x: 0,
     y: 600,
     fixedAspect: true,
-    height: "867px",
+    height: "1150px",
     link: "https://www.holidify.com/images/compressed/attractions/attr_437.jpg",
     index: 1.1,
     minW: 1027,
-    minH: 867,
+    minH: 1000,
     priority: 0,
-    url: "https://yf7oi.sse.codesandbox.io/music?QUERY=ff kmkmkm",
+    url: "https://2rcsw.sse.codesandbox.io/music?QUERY=ff kmkmkm",
     body:
       "I’m a big fan of Pat Flynn from Smart Passive Income. Never mind his about page, I love his entire site! It’s so clean and easy to navigate… but back to about pages. His about page shows another great example of sharing some of his personal life successfully. He doesn’t only explain his brand (professional), but shares a family picture (personal). Side note: My favorite part of his podcast episodes are the fun facts in the opening."
   },

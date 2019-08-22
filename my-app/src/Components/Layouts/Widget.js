@@ -28,8 +28,8 @@ class Widget extends React.Component {
       //     <strong className="mr-auto">{this.props.title}</strong>
       //     <small>11 mins ago</small>
       //   </Toast.Header>
-      <div style={{ textAlign: "center" }} width="100%" height="100%">
-        <div>
+      <div style={{ textAlign: "center", height: "100%" }}>
+        <div style={{ height: "38px" }}>
           {this.props.title}
           <Button
             class="btn btn-light"
@@ -38,7 +38,13 @@ class Widget extends React.Component {
             <i class="fa fa-close" /> Close
           </Button>
         </div>
-        <CardPage object={this.props.object} info={this.props.title} />
+        <div style={{ height: "100%" }}>
+          <CardPage
+            id="CardPage"
+            object={this.props.object}
+            info={this.props.title}
+          />
+        </div>
       </div>
       //   </Toast.Body>
       // </Toast>
