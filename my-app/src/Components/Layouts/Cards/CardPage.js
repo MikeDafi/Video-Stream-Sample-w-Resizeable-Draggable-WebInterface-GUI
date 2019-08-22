@@ -5,7 +5,8 @@ import React from "react";
 
 import GeneralPage from "./GeneralPage.js";
 import BroswerPage from "./BroswerPage.js";
-
+import Explorer from ".././Music/Explorer";
+import Music from ".././Music/Music";
 class Cardpage extends React.Component {
   state = {
     posts: []
@@ -20,6 +21,9 @@ class Cardpage extends React.Component {
     }
     if (id === "Music Search") {
       return <BroswerPage object={o} />;
+    }
+    if (id === "Music") {
+      return <Music object={o} />;
     } else {
       return (
         <>
