@@ -6,12 +6,21 @@ import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
+// import Translate from "@material-ui/icons/Translate";
+// import FlightLand from "@material-ui/icons/FlightLand";
+// import FlightTakeoff from "@material-ui/icons/FlightTakeoff";
+// import SettingsRemote from "@material-ui/icons/SettingsRemote";
+import ExpandLess from "@material-ui/icons/ExpandLess";
+import ExpandMore from "@material-ui/icons/ExpandMore";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import Web from "@material-ui/icons/Web";
+import Contacts from "@material-ui/icons/Contacts";
+import Forum from "@material-ui/icons/Forum";
 import ListItemText from "@material-ui/core/ListItemText";
-import Translate from "@material-ui/icons/Translate";
-import FlightLand from "@material-ui/icons/FlightLand";
-import FlightTakeoff from "@material-ui/icons/FlightTakeoff";
-import SettingsRemote from "@material-ui/icons/SettingsRemote";
+import Collapse from "@material-ui/core/Collapse";
 import "bootstrap/dist/css/bootstrap.min.css";
+import projectsDropDown from "../../Models/projects";
+import sidebar from "../../Models/sidebar";
 
 class Sidebar extends React.Component {
   constructor(props) {
@@ -21,18 +30,27 @@ class Sidebar extends React.Component {
       top: false,
       left: false,
       bottom: false,
-      right: false
+      right: false,
+      open: false
     };
   }
 
-  useStyles = makeStyles({
+  useStyles = makeStyles(theme => ({
+    root: {
+      width: "100%",
+      maxWidth: 360,
+      backgroundColor: theme.palette.background.paper
+    },
+    nested: {
+      paddingLeft: theme.spacing(4)
+    },
     list: {
-      width: 250
+      width: 350
     },
     fullList: {
       width: "auto"
     }
-  });
+  }));
 
   classes = this.useStyles;
 
@@ -40,61 +58,117 @@ class Sidebar extends React.Component {
     this.isVisible = isVisible;
     this.forceUpdate();
   }
-  toggleDrawer = (side, open) => event => {
+  toggleDrawer = (side, open, obj) => event => {
     if (
       event.type === "keydown" &&
       (event.key === "Tab" || event.key === "Shift")
     ) {
       return;
     }
-
+    if (obj != null) {
+      this.props.handleToUpdateFromSidebar(obj);
+    }
     this.setState({ ...this.state, [side]: open });
   };
 
-  list1 = [
-    { key: "F18 Application", index: 0, priority: 0 },
-    { key: "F19 Application", index: 1, priority: 0 },
-    { key: "F20 Application", index: 2, priority: 0 },
-    { key: "F22 Application", index: 3, priority: 0 }
-  ];
+  handleClick() {
+    this.setState({
+      open: !this.state.open
+    });
+  }
 
-  sideList = side => (
-    <div
-      className={this.classes.list}
-      role="presentation"
-      onClick={this.toggleDrawer(side, false)}
-      onKeyDown={this.toggleDrawer(side, false)}
-    >
-      <List>
-        {this.list1.map(obj => (
-          <ListItem
-            button
-            key={obj.key}
-            onClick={() => this.props.handleToUpdateFromSidebar(obj)}
-          >
-            <ListItemIcon>
-              {obj.index % 2 === 0 ? <FlightLand /> : <SettingsRemote />}
-            </ListItemIcon>
-            <ListItemText primary={obj.key} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["Help", "Contact", "Assistance"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <FlightTakeoff /> : <Translate />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
+  sideList = side => {
+    return (
+      <div className={this.classes.list} role="presentation">
+        <List className={this.classes.root}>
+          {sidebar.map(obj =>
+            obj.dropDown ? (
+              <ListItem
+                button
+                key={obj.key}
+                onClick={this.handleClick.bind(this)}
+              >
+                <ListItemIcon>
+                  {obj.index === 0 ? (
+                    <AccountCircle />
+                  ) : obj.index === 1 ? (
+                    <Web />
+                  ) : obj.index === 2 ? (
+                    <Contacts />
+                  ) : obj.index === 3 ? (
+                    <Forum />
+                  ) : null}
+                </ListItemIcon>
+                <ListItemText primary={obj.key} />
+
+                {this.state.open ? <ExpandLess /> : <ExpandMore />}
+                <Collapse in={this.state.open} timeout="auto" unmountOnExit>
+                  <List component="div">
+                    {projectsDropDown.map((projects, key) => (
+                      <ListItem
+                        button
+                        key={key}
+                        className={this.classes.nested}
+                        onClick={this.toggleDrawer(side, false, projects)}
+                        onKeyDown={this.toggleDrawer(side, false, projects)}
+                      >
+                        <ListItemIcon />
+                        <ListItemText primary={projects.key} />
+                      </ListItem>
+                    ))}
+                  </List>
+                </Collapse>
+              </ListItem>
+            ) : (
+              <ListItem
+                button
+                key={obj.key}
+                // onClick={() => {
+                //   this.onClick(obj, side);
+                // }}
+                onClick={this.toggleDrawer(side, false, obj)}
+                onKeyDown={this.toggleDrawer(side, false, obj)}
+              >
+                <ListItemIcon>
+                  {obj.index === 0 ? (
+                    <AccountCircle />
+                  ) : obj.index === 1 ? (
+                    <Web />
+                  ) : obj.index === 2 ? (
+                    <Contacts />
+                  ) : obj.index === 3 ? (
+                    <Forum />
+                  ) : null}
+                </ListItemIcon>
+                <ListItemText primary={obj.key} />
+              </ListItem>
+            )
+          )}
+        </List>
+        <Divider />
+        <center>
+          <br />
+
+          <small>I made this site with React. </small>
+          <br />
+          <a href="url">github repo</a>
+        </center>
+        {/* <List>
+          {["Help", "Contact", "Assistance"].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <FlightTakeoff /> : <Translate />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List> */}
+      </div>
+    );
+  };
 
   render() {
-    var handleToUpdateFromSidebar = this.props.handleToUpdateFromSidebar;
+    // var handleToUpdateFromSidebar = this.props.handleToUpdateFromSidebar;
     return (
       <div id="header">
         <Button onClick={this.toggleDrawer("left", true)}>
@@ -104,7 +178,7 @@ class Sidebar extends React.Component {
             alt="Northrop Logo"
           />
           <div id="header-brand" padding-left="10px">
-            applications
+            portfolio
           </div>
         </Button>
         <Drawer

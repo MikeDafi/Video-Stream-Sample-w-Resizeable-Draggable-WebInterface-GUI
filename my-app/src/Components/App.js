@@ -1,18 +1,15 @@
 import React, { Component } from "react";
+import { Rnd } from "react-rnd";
 
 import Sidebar from "./Layouts/Sidebar";
-
 import Widget from "./Layouts/Widget";
-
-import Draggable from "react-draggable";
-import { Rnd } from "react-rnd";
 
 class App extends Component {
   constructor(props) {
     super(props);
 
-    var handleToUpdateFromSidebar = this.handleToUpdateFromSidebar.bind(this);
-    var removeWidgetByID = this.removeWidgetByID.bind(this);
+    // var handleToUpdateFromSidebar = this.handleToUpdateFromSidebar.bind(this);
+    // var removeWidgetByID = this.removeWidgetByID.bind(this);
     this.state = {
       x: 20,
       viewIt: true,
@@ -61,10 +58,10 @@ class App extends Component {
     }
   }
 
-  eventLogger = (e: MouseEvent, data: Object) => {
-    // console.log("Event: ", e);
-    // console.log("Data: ", data);
-  };
+  // eventLogger = (e: MouseEvent, data: Object) => {
+  //   // console.log("Event: ", e);
+  //   // console.log("Data: ", data);
+  // };
 
   handleDrag = (deltaX, deltaY) => {
     this.setState({
@@ -93,7 +90,7 @@ class App extends Component {
         }
 
         if (
-          y != nextLowest.index &&
+          y !== nextLowest.index &&
           nextLowest.priority + 1 === widgetsCopy[y].priority &&
           first
         ) {
@@ -131,35 +128,50 @@ class App extends Component {
       //   console.log(this.state.widgets[x]);
       // }
       return (
-        <div id="box">
+        <div id="header2">
           <Sidebar
             handleToUpdateFromSidebar={handleToUpdateFromSidebar.bind(this)}
           />
           {this.state.widgets.map(obj => {
-            if (obj != 1) {
+            if (obj !== 1) {
               return (
                 <div>
                   <Rnd
+                    lockAspectRatio={obj.fixedAspect}
+                    enableUserSelectHack={true}
+                    default={{
+                      x: 0,
+                      y: 0,
+                      width: obj.width,
+                      height: obj.height
+                    }}
                     style={{
-                      display: "flex",
-                      border: "solid 5px #ddd",
-                      background: "#f0f0f0",
+                      border: "solid 1px #9CD0EA",
+                      borderInline: "#000000",
+                      background: "#FFFFFF",
                       zIndex: obj.priority
                     }}
+                    cancel="#idk"
+                    minWidth={obj.minW}
+                    minHeight={obj.minH}
                     onMouseDown={() =>
                       this.changeZIndexHelper(this.state, obj.key)
                     }
-                    grid={[25, 25]}
+                    resizeGrid={[25, 25]}
+                    //dragGrid={[25, 25]}
                     {...dragHandlers}
                   >
                     <Widget
                       removeWidgetByID={removeWidgetByID.bind(this)}
                       show={this.state.viewIt}
                       title={obj.key}
+                      object={obj}
                     />
                   </Rnd>
                 </div>
               );
+            } else {
+              return null;
             }
           })}
         </div>
