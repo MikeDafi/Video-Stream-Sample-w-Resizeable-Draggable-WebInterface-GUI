@@ -1,4 +1,3 @@
-import projects from "./projects";
 import posts from "./posts";
 const sidebar = [
   {

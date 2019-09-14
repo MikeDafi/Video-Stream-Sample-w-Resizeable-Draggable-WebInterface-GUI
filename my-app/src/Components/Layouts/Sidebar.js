@@ -78,7 +78,6 @@ class Sidebar extends React.Component {
   }
 
   sideList = side => {
-    let userListItem;
     return (
       <div className={this.classes.list} role="presentation">
         <List className={this.classes.root}>
@@ -105,9 +104,10 @@ class Sidebar extends React.Component {
                 {this.state.open ? <ExpandLess /> : <ExpandMore />}
                 <Collapse in={this.state.open} timeout="auto" unmountOnExit>
                   <List component="div">
-                    {projectsDropDown.map(projects => (
+                    {projectsDropDown.map((projects, key) => (
                       <ListItem
                         button
+                        key={key}
                         className={this.classes.nested}
                         onClick={this.toggleDrawer(side, false, projects)}
                         onKeyDown={this.toggleDrawer(side, false, projects)}
@@ -178,7 +178,7 @@ class Sidebar extends React.Component {
             alt="Northrop Logo"
           />
           <div id="header-brand" padding-left="10px">
-            mckaufma.me
+            portfolio
           </div>
         </Button>
         <Drawer

@@ -2,7 +2,6 @@ import React from "react";
 // import Card from "react-bootstrap/Card";
 // import ListGroup from "react-bootstrap/ListGroup";
 // import ListGroupItem from "react-bootstrap/ListGroupItem";
-import Post from "./Post";
 
 class BroswerPage extends React.Component {
   handleChange(event) {

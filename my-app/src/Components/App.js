@@ -151,6 +151,7 @@ class App extends Component {
                       background: "#FFFFFF",
                       zIndex: obj.priority
                     }}
+                    cancel="#idk"
                     minWidth={obj.minW}
                     minHeight={obj.minH}
                     onMouseDown={() =>
@@ -169,6 +170,8 @@ class App extends Component {
                   </Rnd>
                 </div>
               );
+            } else {
+              return null;
             }
           })}
         </div>
