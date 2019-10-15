@@ -39,17 +39,29 @@ class Music extends React.Component {
     );
   }
 
-  // handleRemoveSong = songIndex => {
-  //   var oldSongs = this.state.songs;
-  //   oldSongs.splice(songIndex, 1);
+  handleRemoveSong = songIndex => {
 
-  //   // alert("in handler: old songs " + oldSongs);
-  //   // alert("in handler: songs is " + this.state.songs1);
-  //   this.setState({
-  //     songs: oldSongs
-  //   });
-  //   this.forceUpdate();
-  // };
+    if(this.state.songs.length > 0){
+
+      var oldSongs = this.state.songs;
+      if(oldSongs[songIndex].numberOfLoops > 0){
+        this.setState(prevState => {
+          prevState.songs[songIndex].numberOfLoops--;
+          return {songs : prevState.songs};
+        });
+      }else{
+
+        oldSongs.splice(songIndex, 1);
+        this.setState({
+          songs: oldSongs
+        });
+      }
+      // alert("in handler: old songs " + oldSongs);
+      // alert("in handler: songs is " + this.state.songs1);
+
+      this.forceUpdate();
+    }
+  };
 
   hidePlayer = () => {
     this.setState({
@@ -177,7 +189,7 @@ class Music extends React.Component {
             <Player
               songs={this.state.songs}
               handleHidePlayer={this.hidePlayer}
-              // handleRemoveSong={this.handleRemoveSong.bind(this)}
+              handleRemoveSong={this.handleRemoveSong.bind(this)}
               changedArrangement={this.changedArrangement.bind(this)}
               notificationMessage={this.notificationMessage}
             />

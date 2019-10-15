@@ -14,7 +14,7 @@ class Cardpage extends React.Component {
   render() {
     const id = this.props.info;
     const o = this.props.object;
-    console.log(id);
+    
     if (id === "About Me" || id === "Posts" || id === "Contact Info") {
       return <GeneralPage object={o} />;
     }

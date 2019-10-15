@@ -26,9 +26,9 @@ const SortableItem = SortableElement(({ value, ind, loopFunc }) => {
         alt={value.title}
       />
       <span>{value.title}</span>
-      <button onClick={this.loopFunc}>
+      <button onClick={(ind) =>loopFunc(ind)}>
         <img
-          src="https://image.flaticon.com/icons/svg/107/107172.svg"
+          src="https://image.flaticon.com/icons/svg/61/61794.svg"
           width="24"
           height="24"
           alt="Loop This Video"
@@ -119,15 +119,16 @@ export default class Queue extends Component {
             />
           </button>
 
-          <button onClick={firstSong => this.props.handleLoopSong}>
+          <button onClick={() => this.props.handleLoopSong(0)}>
             <img
               src="https://image.flaticon.com/icons/svg/61/61794.svg"
               width="24"
               height="24"
-              alt="Round right arrow free icon"
-              title="Round right arrow free icon"
+              alt="Loop Current Track"
+              title="Loop Current Track"
             />
           </button>
+          
         </div>
         <SortableList
           items={this.props.songs}

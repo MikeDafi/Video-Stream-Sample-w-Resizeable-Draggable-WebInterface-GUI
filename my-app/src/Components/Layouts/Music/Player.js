@@ -74,10 +74,14 @@ class Player extends React.Component {
     }
   };
 
-  handleLoopSong() {
-    console.log("why is ");
+  handleLoopSong(index ) {
+    console.log("in handleLoopSong ");
     if (this.state.songs.length > 0) {
       var newSongs = this.state.songs;
+      console.log(index);
+
+      console.log(newSongs);
+      newSongs[index].numberOfLoops++;
       this.setState({
         songs: newSongs
       });
@@ -101,9 +105,9 @@ class Player extends React.Component {
               playing={this.state.play}
               onPause={e => this.onPause.bind(this)}
               onPlay={e => this.onPlay.bind(this)}
-              onEnded={e => this.onEnded.bind(this)}
+              //onEnded={e => this.onEnded.bind(this)}
               controls
-              // onEnded={() => this.props.handleRemoveSong(0)}
+              onEnded={() => this.props.handleRemoveSong(0)}
             />
           </div>
 

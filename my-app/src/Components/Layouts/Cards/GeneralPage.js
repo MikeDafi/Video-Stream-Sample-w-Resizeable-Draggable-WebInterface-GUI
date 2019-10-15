@@ -7,7 +7,7 @@ import Post from "./Post";
 class GeneralPage extends React.Component {
   render() {
     var o = this.props.object;
-    console.log(o.posts);
+    
     if (o.posts.length === 0) {
       return (
         <div>
