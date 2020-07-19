@@ -7,13 +7,15 @@
     "node": ">=6.2.0"
   },
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "build": "concurrently \"cd my-app && npm run build\" \"npm run start\""
   },
   "author": "daspinola",
   "license": "MIT",
   "dependencies": {
     "antd": "3.21.4",
     "array-move": "2.1.0",
+    "concurrently": "^5.2.0",
     "create-react-app": "^3.0.1",
     "express": "^4.15.3",
     "express-react-views": "0.11.0",
