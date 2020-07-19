@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { AutoComplete, Button, Icon } from "antd";
+import { AutoComplete, Button} from "antd";
 // const Option = AutoComplete.Option;
 
 class SearchBar extends Component {
@@ -63,7 +63,6 @@ class SearchBar extends Component {
           onClick={() => this.props.onChange(this.state.currentSearch)}
           // onSelect{}
         >
-          <Icon type={"search"} />
         </Button>
       </div>
     );
