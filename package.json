@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "nodemon server.js",
-    "build": "concurrently \"cd my-app && npm run build\" \"npm run start\""
+    "build": "(cd my-app && npm run build) & npm run start"
   },
   "author": "daspinola",
   "license": "MIT",
